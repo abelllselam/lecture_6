@@ -69,3 +69,70 @@ Starts With | Means
 2xx | Success ✅
 4xx | Client made mistake ❌
 5xx | Server problem ❌
+
+# Networking Node Modules
+
+- Networking node modules are libraries that helps you talk to other computers, servers or APIs. Which make it easy to send, request, receive data.
+
+- Examples of common Networking Node modules
+  Module | What it does
+  http | Native Node.js module to create a basic server (no need to install)
+  https | Same as http, but secure with SSL
+  axios | Send HTTP requests easily (GET, POST, etc.)
+  node-fetch | Lightweight way to send HTTP requests
+  express | Framework for building bigger servers easily
+
+- Some are build into Node: http, https
+- Some are installed separately: axios, express, request
+
+# Promised based network requests:
+
+- A promise like using fetch and axios is returning a promise saying i will give you the return later not right now but promise to give you the result failure or success later.
+- Without promise the user would have to pause and wait because the code would be frozen.
+
+# Fetch
+
+- Built in browser
+
+```js
+fetch("https://api.example.com/data")
+  .then((response) => response.json()) // first .then() after response arrives
+  .then((data) => console.log(data)) // second .then() after parsing JSON
+  .catch((error) => console.error("Error:", error)); // catch any errors
+```
+
+What's happening step-by-step:
+
+- fetch() starts the network request and returns a Promise immediately.
+- .then(response => response.json()) waits for the server to respond, then turns the response into usable JSON.
+- .then(data => console.log(data)) waits for the JSON parsing to finish, then prints the data.
+- .catch(error => console.error('Error:', error)) will run if something goes wrong at any step.
+
+# Axios
+
+import axios from 'axios';
+
+```js
+axios
+  .get("https://api.example.com/data")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+```
+
+What's happening here:
+
+- axios.get() starts the request and returns a Promise.
+- .then(response => {...}) runs when the request succeeds.
+- .catch(error => {...}) runs if the request fails.
+- With axios, the response already has JSON parsed for you!
+  (No need for response.json() like in fetch.)
+
+# oAuth and Tokens
+
+- OAuth (Short for Open Authorization) is a system that allows secure access to resources without sharing passwords.So it is like giving a website your password you give it a special permission slip. For instance, google would give a website a token instead of your password to access their website.
+
+- oAuth is the standard for open authorization on the internet.
